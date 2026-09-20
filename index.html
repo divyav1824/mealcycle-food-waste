@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MealCycle AI — Powered by IBM watsonx & Granite 3.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand" onclick="switchTab('home')">
+        <div class="brand-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>MealCycle <span class="badge-ai">IBM watsonx</span></h1>
+          <span class="brand-subtitle">Smart Canteen Decision Support · IBM BOB Integrated</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" id="nav-tabs">
+        <button class="nav-btn active" data-tab="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Overview
+        </button>
+        <button class="nav-btn" data-tab="predict">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          Demand Predictor
+        </button>
+        <button class="nav-btn" data-tab="surplus">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Surplus & Safety
+        </button>
+        <button class="nav-btn" data-tab="whatif">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+          What-If Simulator
+        </button>
+        <button class="nav-btn" data-tab="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 16h2v-4H7v4zm4 0h2V8h-2v8zm4 0h2v-7h-2v7z"/></svg>
+          Analytics
+        </button>
+        <button class="nav-btn" data-tab="about">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Governance & Specs
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <span class="status-pill"><span class="pulse-dot"></span> IBM Granite 3.0 Active</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- TAB 1: OVERVIEW / HOME -->
+    <section id="home" class="tab-page active">
+      <div class="hero-grid">
+        <div class="hero-text-col">
+          <div class="tag-label">1M1B × IBM SkillsBuild · Powered by IBM Granite & watsonx</div>
+          <h1 class="hero-heading">Precision Canteen Planning.<br><span class="highlight-text">Zero Unnecessary Waste.</span></h1>
+          <p class="hero-lead">MealCycle AI combines IBM watsonx.ai & Granite 3.0 LLMs with predictive machine learning to eliminate canteen guesswork — giving staff a data-backed recommendation docket while preserving human authority.</p>
+
+          <div class="hero-btn-group">
+            <button class="btn btn-primary" onclick="switchTab('predict')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Generate Prep Docket
+            </button>
+            <button class="btn btn-secondary" onclick="switchTab('whatif')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Explore What-If Simulator
+            </button>
+          </div>
+
+          <div class="metrics-strip">
+            <div class="m-card">
+              <span class="m-val">IBM Granite</span>
+              <span class="m-lbl">LLM Engine</span>
+            </div>
+            <div class="m-card">
+              <span class="m-val">0.86 R²</span>
+              <span class="m-lbl">Prediction Accuracy</span>
+            </div>
+            <div class="m-card">
+              <span class="m-val">100%</span>
+              <span class="m-lbl">Human Oversight</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Sample Ticket Component -->
+        <div class="hero-preview-col">
+          <div class="preview-card-header">
+            <span class="preview-title">Live Sample Ticket Docket</span>
+            <span class="badge-tag green">IBM watsonx Integrated</span>
+          </div>
+          
+          <div class="ticket-docket" id="sample-docket">
+            <div class="docket-header">
+              <div class="docket-stamp">MEALCYCLE PREP DOCKET</div>
+              <div class="docket-id">#MC-IBM-2026</div>
+            </div>
+            
+            <div class="docket-body">
+              <div class="docket-main-title">Monday · Rice, Dal & Veg</div>
+              <div class="docket-meta">Target: Main Student Dining Hall</div>
+
+              <div class="docket-divider"></div>
+
+              <div class="docket-row">
+                <span class="d-label">Expected Students</span>
+                <span class="d-val">450 head count</span>
+              </div>
+              <div class="docket-row">
+                <span class="d-label">Base Predicted Demand</span>
+                <span class="d-val">398 portions</span>
+              </div>
+              <div class="docket-row">
+                <span class="d-label">Safety Buffer Applied</span>
+                <span class="d-val">+6% (+24 portions)</span>
+              </div>
+
+              <div class="docket-divider highlight"></div>
+
+              <div class="docket-row big">
+                <span class="d-label">RECOMMENDED PREP</span>
+                <span class="d-val highlight-num">422 portions</span>
+              </div>
+
+              <div class="docket-row">
+                <span class="d-label">Surplus Risk Level</span>
+                <span class="risk-badge low">LOW RISK</span>
+              </div>
+            </div>
+
+            <div class="docket-footer">
+              <div class="d-note">💡 Staff retain final decision authority on all batch sizes.</div>
+              <div class="barcode-strip">||||| |||| |||||| ||| ||||||| |||| |||</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="feature-section">
+        <h2 class="section-title">Workflow Capabilities</h2>
+        <div class="feature-grid">
+          <div class="f-card" onclick="switchTab('predict')">
+            <div class="f-icon emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Smart Demand Prediction</h3>
+            <p>Calculates exact meal demand using historical attendance, day-of-week trends, menu popularity, and campus events.</p>
+            <span class="f-link">Open Predictor &rarr;</span>
+          </div>
+
+          <div class="f-card" onclick="switchTab('surplus')">
+            <div class="f-icon amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>IBM watsonx RAG Assistant</h3>
+            <p>Analyzes end-of-service leftovers and retrieves instant food safety & redistribution policies grounded in policy docs.</p>
+            <span class="f-link">Open Surplus Analyzer &rarr;</span>
+          </div>
+
+          <div class="f-card" onclick="switchTab('whatif')">
+            <div class="f-icon blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>What-If Simulator</h3>
+            <p>Simulate turnout changes and kitchen adjustments to model cost savings ($) and carbon footprint (CO₂e) before cooking.</p>
+            <span class="f-link">Open Simulator &rarr;</span>
+          </div>
+
+          <div class="f-card" onclick="switchTab('dashboard')">
+            <div class="f-icon purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 16h2v-4H7v4zm4 0h2V8h-2v8zm4 0h2v-7h-2v7z"/></svg>
+            </div>
+            <h3>Executive Analytics</h3>
+            <p>Track weekly prepared vs. consumed ratios and generate 1-click executive summaries for management digest.</p>
+            <span class="f-link">Open Dashboard &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: DEMAND PREDICTOR -->
+    <section id="predict" class="tab-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Demand Predictor</h2>
+          <p class="page-desc">Enter tomorrow's operational parameters or type a natural kitchen note. The model estimates demand and generates a formatted prep docket.</p>
+        </div>
+        <div class="preset-pills">
+          <span class="preset-label">Quick Presets:</span>
+          <button class="pill-btn" onclick="loadPredictPreset('mon')">Mon Regular</button>
+          <button class="pill-btn" onclick="loadPredictPreset('wed_event')">Wed Event</button>
+          <button class="pill-btn" onclick="loadPredictPreset('thu_exam')">Thu Exam</button>
+          <button class="pill-btn" onclick="loadPredictPreset('fri_festive')">Fri Festive</button>
+        </div>
+      </div>
+
+      <!-- Natural Note Extraction Tool -->
+      <div class="glass-card ai-note-box">
+        <div class="box-header">
+          <div class="box-title">
+            <svg width="20" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            IBM Granite 3.0 Note Extractor
+          </div>
+          <span class="badge-tag amber">IBM watsonx.ai Engine</span>
+        </div>
+        <p class="box-desc">Type your shift notes naturally. IBM Granite LLM extracts student headcount, menu type, day, and event tags directly into the form.</p>
+        
+        <div class="input-action-row">
+          <textarea id="note-input" rows="2" placeholder="e.g. Tomorrow is Wednesday, expecting around 480 students with the Festive Menu and a campus placement drive happening."></textarea>
+          <button class="btn btn-primary" id="extract-btn" onclick="extractEntities()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-3.5-6.5l-2.1 2.1m-8.8 8.8l-2.1 2.1m0-13l2.1 2.1m8.8 8.8l2.1 2.1"/></svg>
+            Parse Note (IBM Granite)
+          </button>
+        </div>
+
+        <div id="extract-result" class="extract-result-area" style="display:none;">
+          <div class="extract-status-head" id="extract-status">Extracted parameters:</div>
+          <div id="extract-tags" class="tag-cloud"></div>
+        </div>
+      </div>
+
+      <!-- Prediction Form & Output Docket Grid -->
+      <div class="two-col-grid">
+        
+        <!-- Input Parameters Form -->
+        <div class="glass-card">
+          <h3 class="card-title">Tomorrow's Operational Context</h3>
+          
+          <div class="form-group">
+            <label for="p-students">Expected Students / Attendees</label>
+            <input type="number" id="p-students" value="450" min="10" max="2000" oninput="runPrediction()">
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="p-day">Day of Week</label>
+              <select id="p-day" onchange="runPrediction()">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="p-menu">Menu Type</label>
+              <select id="p-menu" onchange="runPrediction()">
+                <option value="Regular Rotation">Regular Rotation</option>
+                <option value="Rice+Dal+Veg">Rice + Dal + Vegetables</option>
+                <option value="Special/Festive">Special / Festive Menu</option>
+                <option value="Light Menu">Light Menu (Khichdi / Soup)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Context Modifiers</label>
+            <div class="checkbox-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="p-event" onchange="runPrediction()">
+                <span class="checkmark"></span>
+                Campus Event (+Event demand)
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="p-exam" onchange="runPrediction()">
+                <span class="checkmark"></span>
+                Exam Season (-Turnout)
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="p-holiday" onchange="runPrediction()">
+                <span class="checkmark"></span>
+                Holiday / Partial Day
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group slider-group">
+            <div class="slider-header">
+              <label for="p-buffer">Human Safety Buffer: <span id="buffer-val-display" class="highlight-num">+6%</span></label>
+            </div>
+            <input type="range" id="p-buffer" min="0" max="20" value="6" step="1" oninput="runPrediction()">
+            <div class="slider-ticks">
+              <span>0% (Exact)</span>
+              <span>+6% (Standard)</span>
+              <span>+20% (High Safety)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Docket Output Column -->
+        <div class="docket-column">
+          <div class="docket-card-wrap">
+            <div id="predict-docket-output">
+              <!-- Rendered via JS -->
+            </div>
+            
+            <div class="docket-actions">
+              <button class="btn btn-secondary btn-sm" onclick="printDocket()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print Kitchen Docket
+              </button>
+              <button class="btn btn-secondary btn-sm" onclick="copyDocketText()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Text
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 3: SURPLUS & SAFETY -->
+    <section id="surplus" class="tab-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Surplus & Food Safety Analyzer</h2>
+          <p class="page-desc">Log end-of-service figures to calculate waste ratios, inspect surplus categories, and query institutional food safety protocols via IBM watsonx RAG lookup.</p>
+        </div>
+      </div>
+
+      <div class="two-col-grid">
+        <!-- Log Inputs & Gauge Card -->
+        <div class="glass-card">
+          <h3 class="card-title">End-of-Service Log</h3>
+          
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="s-prepared">Total Prepared (Portions)</label>
+              <input type="number" id="s-prepared" value="420" min="0" oninput="runSurplus()">
+            </div>
+            <div class="form-group">
+              <label for="s-consumed">Total Consumed (Portions)</label>
+              <input type="number" id="s-consumed" value="380" min="0" oninput="runSurplus()">
+            </div>
+          </div>
+
+          <div class="gauge-card" id="surplus-gauge-container">
+            <div class="gauge-svg-wrap">
+              <svg class="gauge-svg" viewBox="0 0 120 120">
+                <circle class="gauge-bg" cx="60" cy="60" r="50"/>
+                <circle class="gauge-fill" id="gauge-fill-circle" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+              </svg>
+              <div class="gauge-center-text">
+                <span class="gauge-percent" id="gauge-percent-text">9.5%</span>
+                <span class="gauge-sub">Surplus Ratio</span>
+              </div>
+            </div>
+
+            <div class="gauge-details">
+              <div class="g-row">
+                <span class="g-lbl">Leftover Quantity:</span>
+                <span class="g-val" id="g-surplus-qty">40 portions</span>
+              </div>
+              <div class="g-row">
+                <span class="g-lbl">Surplus Rating:</span>
+                <span class="risk-badge medium" id="g-surplus-badge">MEDIUM SURPLUS</span>
+              </div>
+              <p class="g-desc" id="g-surplus-desc">Moderate surplus. Consider reducing batch size slightly for similar menu context.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Food Safety Policy RAG Assistant -->
+        <div class="glass-card">
+          <div class="box-header">
+            <h3 class="card-title">IBM watsonx RAG Policy Assistant</h3>
+            <span class="badge-tag green">IBM watsonx.ai Grounded</span>
+          </div>
+          <p class="card-desc">Search institutional food safety guidelines. Answers are retrieved strictly from policy snippets to ensure safe food handling.</p>
+
+          <div class="input-action-row">
+            <input type="text" id="rag-question" placeholder="e.g. Can we redistribute leftover cooked rice?" onkeydown="if(event.key==='Enter') askGuidelines()">
+            <button class="btn btn-primary" id="rag-btn" onclick="askGuidelines()">Ask watsonx RAG</button>
+          </div>
+
+          <div class="rag-presets">
+            <span class="preset-label">Sample Policy Queries:</span>
+            <button class="pill-btn" onclick="setRagQuery('Can we redistribute today\'s leftover rice?')">Redistribute Rice?</button>
+            <button class="pill-btn" onclick="setRagQuery('How long can food stay at room temperature?')">Room Temp Limit</button>
+            <button class="pill-btn" onclick="setRagQuery('What food requires sign-off from safety supervisor?')">Sign-off Rules</button>
+            <button class="pill-btn" onclick="setRagQuery('Can dairy or meat items be saved for next day?')">Dairy & Meat Rules</button>
+          </div>
+
+          <div id="rag-output" class="rag-output-box" style="display:none;">
+            <div class="rag-answer-head">Grounded Policy Response (IBM watsonx):</div>
+            <p id="rag-answer-text" class="rag-answer-text"></p>
+
+            <div class="rag-source-head">Retrieved Policy Snippets:</div>
+            <div id="rag-snippets-list" class="rag-snippets-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: WHAT-IF SIMULATOR -->
+    <section id="whatif" class="tab-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">What-If Scenario Simulator</h2>
+          <p class="page-desc">Simulate variations in student turnout and kitchen batch adjustments to instantly calculate financial ($) and carbon footprint (CO₂e) impacts.</p>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h3 class="card-title">Interactive Scenario Controls</h3>
+        <p class="card-desc">Baseline Context: Standard Monday · Regular Rotation · 450 Base Expected Students</p>
+
+        <div class="slider-grid-2">
+          <div class="form-group slider-group">
+            <div class="slider-header">
+              <label for="w-att">Attendance Turnout Variation: <span id="w-att-val" class="highlight-num">0%</span></label>
+            </div>
+            <input type="range" id="w-att" min="-40" max="40" value="0" step="5" oninput="runWhatIf()">
+            <div class="slider-ticks">
+              <span>-40% (Low Turnout)</span>
+              <span>0% (Standard)</span>
+              <span>+40% (High Turnout)</span>
+            </div>
+          </div>
+
+          <div class="form-group slider-group">
+            <div class="slider-header">
+              <label for="w-prep">Kitchen Batch Prep Adjustment: <span id="w-prep-val" class="highlight-num">0%</span></label>
+            </div>
+            <input type="range" id="w-prep" min="-30" max="30" value="0" step="5" oninput="runWhatIf()">
+            <div class="slider-ticks">
+              <span>-30% (Lean Cooking)</span>
+              <span>0% (Standard Prep)</span>
+              <span>+30% (Max Buffer)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-grid">
+          <!-- Baseline Card -->
+          <div class="comp-card">
+            <div class="comp-head">BASELINE SCENARIO</div>
+            <div class="comp-big-num" id="w-base-num">422</div>
+            <div class="comp-unit">portions prepared</div>
+
+            <div class="comp-divider"></div>
+
+            <div class="comp-stat-row">
+              <span>Expected Demand:</span>
+              <span id="w-base-demand">398 portions</span>
+            </div>
+            <div class="comp-stat-row">
+              <span>Expected Surplus:</span>
+              <span class="badge-tag green" id="w-base-surplus">24 portions</span>
+            </div>
+          </div>
+
+          <!-- Adjusted Scenario Card -->
+          <div class="comp-card active-scenario">
+            <div class="comp-head highlight">SIMULATED SCENARIO</div>
+            <div class="comp-big-num highlight-num" id="w-mod-num">422</div>
+            <div class="comp-unit">portions prepared</div>
+
+            <div class="comp-divider"></div>
+
+            <div class="comp-stat-row">
+              <span>Simulated Demand:</span>
+              <span id="w-mod-demand">398 portions</span>
+            </div>
+            <div class="comp-stat-row">
+              <span>Simulated Balance:</span>
+              <span class="badge-tag green" id="w-mod-surplus">24 portions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Impact Summary Strip -->
+        <div class="impact-summary-box">
+          <div class="impact-title">Estimated Impact vs. Baseline</div>
+          <div class="impact-grid-3">
+            <div class="i-card">
+              <span class="i-lbl">Cost Impact ($)</span>
+              <span class="i-val green" id="w-cost-impact">$0.00</span>
+              <span class="i-sub" id="w-cost-sub">At avg $2.50 / portion prep cost</span>
+            </div>
+
+            <div class="i-card">
+              <span class="i-lbl">CO₂e Waste Impact</span>
+              <span class="i-val green" id="w-co2-impact">0.0 kg</span>
+              <span class="i-sub" id="w-co2-sub">At 0.8 kg CO₂e / portion waste</span>
+            </div>
+
+            <div class="i-card">
+              <span class="i-lbl">Shortfall Risk</span>
+              <span class="i-val" id="w-risk-impact">None (Safe)</span>
+              <span class="i-sub" id="w-risk-sub">Buffer adequate for demand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: ANALYTICS DASHBOARD -->
+    <section id="dashboard" class="tab-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Executive Analytics & Weekly Digest</h2>
+          <p class="page-desc">Track weekly prepared vs. consumed ratios, analyze waste distribution, and generate automated plain-language executive summaries.</p>
+        </div>
+      </div>
+
+      <!-- Stat Overview Cards -->
+      <div class="kpi-grid-4">
+        <div class="kpi-card">
+          <div class="k-val">414</div>
+          <div class="k-lbl">Avg Daily Attendance</div>
+          <div class="k-trend green">&uarr; 3.2% vs last wk</div>
+        </div>
+        <div class="kpi-card">
+          <div class="k-val">431</div>
+          <div class="k-lbl">Avg Daily Prepared</div>
+          <div class="k-trend neutral">Stable</div>
+        </div>
+        <div class="kpi-card">
+          <div class="k-val">389</div>
+          <div class="k-lbl">Avg Daily Consumed</div>
+          <div class="k-trend green">&uarr; 4.1% efficiency</div>
+        </div>
+        <div class="kpi-card">
+          <div class="k-val">42</div>
+          <div class="k-lbl">Avg Daily Surplus</div>
+          <div class="k-trend green">&darr; 14% reduction</div>
+        </div>
+      </div>
+
+      <!-- Weekly Prepared vs Consumed Chart -->
+      <div class="glass-card">
+        <div class="box-header">
+          <h3 class="card-title">Weekly Prepared vs. Consumed Portions</h3>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-swatch prepared"></span> Prepared Portions</span>
+            <span class="legend-item"><span class="legend-swatch consumed"></span> Consumed Portions</span>
+          </div>
+        </div>
+
+        <div class="chart-container" id="bar-chart-container">
+          <!-- Rendered via JS SVG -->
+        </div>
+      </div>
+
+      <!-- AI Weekly Digest Generator -->
+      <div class="glass-card" style="margin-top: 24px;">
+        <div class="box-header">
+          <h3 class="card-title">IBM Granite Weekly Executive Digest</h3>
+          <span class="badge-tag purple">IBM Granite Summarizer</span>
+        </div>
+        <p class="card-desc">Synthesizes the weekly data into a concise digest for management reporting.</p>
+
+        <button class="btn btn-primary" id="digest-btn" onclick="generateDigest()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Generate Summary (IBM Granite)
+        </button>
+
+        <div id="digest-output" class="digest-output-box" style="display:none;">
+          <div class="digest-card">
+            <div class="digest-head">Executive Digest — IBM Granite 3.0 Summary</div>
+            <p id="digest-text" class="digest-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: RESPONSIBLE AI & SYSTEM SPECS -->
+    <section id="about" class="tab-page">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Governance & System Methodology</h2>
+          <p class="page-desc">MealCycle AI adheres to strict Responsible AI guidelines (SDG 12), prioritizing human oversight, data privacy, and ethical decision support.</p>
+        </div>
+      </div>
+
+      <!-- Principles Grid -->
+      <div class="principles-grid">
+        <div class="p-card">
+          <div class="p-icon">⚖️</div>
+          <h3>Fairness & Equity</h3>
+          <p>Models focus on aggregated daily student headcounts. Individual consumption profiling is explicitly prohibited to prevent bias.</p>
+        </div>
+
+        <div class="p-card">
+          <div class="p-icon">🔍</div>
+          <h3>Transparency</h3>
+          <p>Every generated prep ticket displays explicit breakdown parameters — baseline model forecast, day weights, and applied safety buffer.</p>
+        </div>
+
+        <div class="p-card">
+          <div class="p-icon">🛡️</div>
+          <h3>Human-in-the-Loop</h3>
+          <p>AI outputs are strictly recommendations. Authorized kitchen managers maintain sole authority over final prep quantities.</p>
+        </div>
+
+        <div class="p-card">
+          <div class="p-icon">🔒</div>
+          <h3>Data Privacy</h3>
+          <p>Operates entirely on aggregated institutional attendance totals and anonymized meal counts. Zero personal identifiable information (PII) processed.</p>
+        </div>
+
+        <div class="p-card">
+          <div class="p-icon">🥗</div>
+          <h3>Food Safety Boundary</h3>
+          <p>The AI system never independently certifies food as safe/unsafe for redistribution. Safety decisions strictly follow retrieved institution protocols.</p>
+        </div>
+
+        <div class="p-card">
+          <div class="p-icon">🌱</div>
+          <h3>Sustainability Target</h3>
+          <p>Aligned with UN Sustainable Development Goal 12.3: Halving global food waste at retail and consumer levels by 2030.</p>
+        </div>
+      </div>
+
+      <!-- System Specifications & Technical Specs Drawer -->
+      <div class="glass-card" style="margin-top: 32px;">
+        <div class="box-header">
+          <h3 class="card-title">Technical Model Specifications & IBM Technology Architecture</h3>
+          <span class="badge-tag green">IBM BOB & SkillsBuild Stack</span>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-box">
+            <h4>Prediction Model Architecture</h4>
+            <ul>
+              <li><strong>Algorithm:</strong> Multiple Linear Regression (scikit-learn trained)</li>
+              <li><strong>Training Dataset:</strong> 180 Operational Canteen Days (144 Train / 36 Test)</li>
+              <li><strong>Model Performance:</strong> MAE ≈ 25.04 portions | RMSE ≈ 28.91 | R² ≈ 0.864</li>
+              <li><strong>Model Features:</strong> Student headcount, Day of week (one-hot), Menu category, Event flag, Exam period flag, Holiday flag.</li>
+            </ul>
+          </div>
+
+          <div class="spec-box">
+            <h4>IBM watsonx & Granite 3.0 Integration</h4>
+            <ul>
+              <li><strong>LLM Foundational Model:</strong> IBM Granite 3.0 8B Instruct (via IBM watsonx.ai runtime).</li>
+              <li><strong>IBM BOB Framework:</strong> Deployed via IBM Cloud SkillsBuild API endpoints with client offline fallback.</li>
+            </ul>
+          </div>
+
+          <div class="spec-box">
+            <h4>IBM watsonx RAG Policy Lookup</h4>
+            <ul>
+              <li><strong>Methodology:</strong> Keyword vector overlap & TF-IDF scoring over verified institutional policy text.</li>
+              <li><strong>Safety Guardrail:</strong> Constrained prompting prevents hallucination or unauthorized food safety claims.</li>
+            </ul>
+          </div>
+
+          <div class="spec-box">
+            <h4>Entity Extraction Prompt Design</h4>
+            <ul>
+              <li><strong>LLM Task:</strong> Natural Language parser extracting structured JSON entities from informal kitchen logs.</li>
+              <li><strong>Human Verification:</strong> Extracted fields auto-populate the form but require user review before ticket generation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div>MealCycle AI — Smart Canteen Decision Support & Food Waste Prevention</div>
+      <div class="footer-sub">1M1B × IBM SkillsBuild Internship · IBM watsonx & Granite 3.0 Integrated · UN SDG 12 Target</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
